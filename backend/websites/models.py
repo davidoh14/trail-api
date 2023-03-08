@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+from companies.models import Company
+
+class Website(models.Model):
+    hostname = models.CharField(max_length=200)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
