@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&99+7uc%@v1piqk0k*)*cr+#v^^wy8821&&oe!mz48-+-r$@#='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == "1"
 
 ALLOWED_HOSTS = []
 
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'home.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-print('PASSWORD~~', os.environ.get('DB_PW'))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
