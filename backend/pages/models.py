@@ -5,8 +5,8 @@ import uuid
 class Page(models.Model):
     anonymous_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     # visitor
-    category = models.CharField(max_length=200, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
+    category = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True)
     # session
     session_id = models.CharField(max_length=200)
     session_creation_time = models.DateTimeField()
@@ -21,4 +21,6 @@ class Page(models.Model):
     url = models.URLField(max_length=200)
     referrer = models.URLField(max_length=400)
     search = models.CharField(max_length=200)
+
+    
 
