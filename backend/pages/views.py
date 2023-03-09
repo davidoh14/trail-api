@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from .models import Page
+from .serializers import PageSerializer
+
+
+class PageCreateAPIView(generics.CreateAPIView):
+    queryset = Page.objects.all()
+    serializer_class = PageSerializer
