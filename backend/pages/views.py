@@ -10,9 +10,16 @@ from datetime import datetime
 
 @api_view(["POST"])
 def page_create_view(request, *args, **kwargs):
+    received_at = datetime.now()
+    ip = request.META.get('REMOTE_ADDR')
 
-    print(request.data)
-    serializer = PageSerializer(data=request.data)
+    data = {
+        **request.data, 
+        'received_at':received_at, 
+        'ip':ip
+    }
+    print(data)
+    serializer = PageSerializer(data=data)
 
     if not serializer.is_valid():
         print('invalid')
@@ -24,6 +31,3 @@ def page_create_view(request, *args, **kwargs):
         serializer.save()
         return Response(serializer.data)
     
-
-def convert_ISO_to_datetime(ISO):
-    return datetime.strptime(ISO, '%Y-%m-%dT%H:%M:%S.%fZ')
