@@ -7,15 +7,13 @@ const state = {
 
 const createAnonymousId = () => {
     if (state["anonymousId"] === null) {
-        console.log('creating anon id')
         const newAnonymousId = uuidv4()
-        console.log(newAnonymousId)
+
+        state["anonymousId"] = newAnonymousId
         data["anonymous_id"] = newAnonymousId
         localStorage.setItem("anonymousId", newAnonymousId)
     }
 }
-
-
 
 window.onload = function() {
     console.log("request");

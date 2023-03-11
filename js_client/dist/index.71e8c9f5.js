@@ -563,9 +563,8 @@ const state = {
 };
 const createAnonymousId = ()=>{
     if (state["anonymousId"] === null) {
-        console.log("creating anon id");
         const newAnonymousId = (0, _uuid.v4)();
-        console.log(newAnonymousId);
+        state["anonymousId"] = newAnonymousId;
         data["anonymous_id"] = newAnonymousId;
         localStorage.setItem("anonymousId", newAnonymousId);
     }
