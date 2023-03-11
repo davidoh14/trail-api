@@ -18,7 +18,7 @@ def page_create_view(request, *args, **kwargs):
         'received_at':received_at, 
         'ip': ip,
     }
-    
+    print('~~~DATA~~~', data)
     serializer = PageSerializer(data=data)
 
     if not serializer.is_valid():

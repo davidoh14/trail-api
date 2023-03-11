@@ -10,8 +10,6 @@ class PageSerializer(serializers.ModelSerializer):
             'anonymous_id',
             'category',
             'name',
-            'session_id',
-            'session_creation_time',
             'received_at',
             'sent_at',
             'ip',
