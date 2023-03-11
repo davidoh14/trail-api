@@ -558,13 +558,9 @@ function hmrAccept(bundle, id) {
 
 },{}],"2dgaA":[function(require,module,exports) {
 var _uuid = require("uuid");
-const state = {
-    "anonymousId": null
-};
 const createAnonymousId = ()=>{
-    if (state["anonymousId"] === null) {
+    if (!localStorage["anonymousId"]) {
         const newAnonymousId = (0, _uuid.v4)();
-        state["anonymousId"] = newAnonymousId;
         data["anonymous_id"] = newAnonymousId;
         localStorage.setItem("anonymousId", newAnonymousId);
     }
@@ -582,7 +578,7 @@ window.onload = function() {
     });
 };
 const data = {
-    "anonymous_id": state["anonymousId"],
+    "anonymous_id": localStorage["anonymousId"],
     "sent_at": new Date(),
     "user_agent": navigator.userAgent,
     "title": document.title,

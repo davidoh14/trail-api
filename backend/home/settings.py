@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # internal apps
-    'api',
     'companies',
     'visitors',
     'pages',
