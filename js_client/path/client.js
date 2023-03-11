@@ -1,8 +1,6 @@
 const requestSendTime = new Date()
 
 const data = {
-    'session_id': '1',
-    'session_creation_time': requestSendTime,
     'sent_at': requestSendTime,
     'user_agent': navigator.userAgent,
     'title': document.title,

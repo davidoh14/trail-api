@@ -9,8 +9,6 @@ class Page(models.Model):
     category = models.CharField(max_length=50, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     # session
-    session_id = models.CharField(max_length=200)
-    session_creation_time = models.DateTimeField()
     received_at = models.DateTimeField()
     sent_at = models.DateTimeField()
     ip = models.GenericIPAddressField()

@@ -16,9 +16,9 @@ def page_create_view(request, *args, **kwargs):
     data = {
         **request.data, 
         'received_at':received_at, 
-        'ip':ip
+        'ip': ip,
     }
-    print(data)
+    
     serializer = PageSerializer(data=data)
 
     if not serializer.is_valid():
@@ -29,5 +29,6 @@ def page_create_view(request, *args, **kwargs):
 
     if serializer.is_valid(raise_exception=True):
         serializer.save()
+        print(serializer.data)
         return Response(serializer.data)
     
