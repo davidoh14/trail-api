@@ -2,11 +2,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const createAnonymousId = () => {
-    if (!localStorage["anonymousId"]) {
+    if (!localStorage["trail_anon_id"]) {
         const newAnonymousId = uuidv4()
 
+        localStorage.setItem("trail_anon_id", newAnonymousId)
         data["anonymous_id"] = newAnonymousId
-        localStorage.setItem("anonymousId", newAnonymousId)
     }
 }
 
@@ -24,7 +24,7 @@ window.onload = function() {
 };
 
 const data = {
-    'anonymous_id': localStorage["anonymousId"],
+    'anonymous_id': localStorage["trail_anon_id"],
     'sent_at': new Date(),
     'user_agent': navigator.userAgent,
     'title': document.title,
