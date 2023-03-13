@@ -559,10 +559,10 @@ function hmrAccept(bundle, id) {
 },{}],"2dgaA":[function(require,module,exports) {
 var _uuid = require("uuid");
 const createAnonymousId = ()=>{
-    if (!localStorage["anonymousId"]) {
+    if (!localStorage["trail_anon_id"]) {
         const newAnonymousId = (0, _uuid.v4)();
+        localStorage.setItem("trail_anon_id", newAnonymousId);
         data["anonymous_id"] = newAnonymousId;
-        localStorage.setItem("anonymousId", newAnonymousId);
     }
 };
 window.onload = function() {
@@ -578,7 +578,7 @@ window.onload = function() {
     });
 };
 const data = {
-    "anonymous_id": localStorage["anonymousId"],
+    "anonymous_id": localStorage["trail_anon_id"],
     "sent_at": new Date(),
     "user_agent": navigator.userAgent,
     "title": document.title,
