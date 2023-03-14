@@ -1,27 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
 
+const script = document.getElementById('trail-api')
+const scriptSrc = script.getAttribute('src')
+const scriptSrcURL = new URL(scriptSrc)
+const scriptSearchParams = new URLSearchParams(scriptSrcURL.search)
+const apiKey = scriptSearchParams.get('apikey')
 
-const createAnonymousId = () => {
-    if (!localStorage["trail_anon_id"]) {
-        const newAnonymousId = uuidv4()
+const baseURL = 'http://localhost:8000/pages/create/'
 
-        localStorage.setItem("trail_anon_id", newAnonymousId)
-        data["anonymous_id"] = newAnonymousId
-    }
-}
 
-window.onload = function() {
-    console.log("request");
-    createAnonymousId()
-    console.log('data', data)
-    fetch('http://localhost:8000/pages/create/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
+const config = {
+  baseURL: baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': apiKey,
+  }
 };
+
 
 const data = {
     'anonymous_id': localStorage["trail_anon_id"],
@@ -33,3 +28,27 @@ const data = {
     'referrer': document.referrer,
     'search': window.location.search,
 }
+
+const createAnonymousId = () => {
+    if (!localStorage["trail_anon_id"]) {
+        const newAnonymousId = uuidv4()
+
+        localStorage.setItem("trail_anon_id", newAnonymousId)
+        data["anonymous_id"] = newAnonymousId
+    }
+}
+
+const pageEvent = async () => {
+    console.log("request");
+    createAnonymousId();
+    console.log('data', data);
+    console.log('auth', config.headers.Authorization)
+    await fetch(config.baseURL, {
+        method: 'POST',
+        headers: config.headers,
+        body: JSON.stringify(data)
+    });
+};
+
+
+window.addEventListener('load', pageEvent);
