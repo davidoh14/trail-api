@@ -3,7 +3,7 @@ from django.db import models
 
 class Page(models.Model):
     # visitor
-    anonymous_id = models.UUIDField(blank=True)
+    anonymous_id = models.UUIDField(blank=True, null=False)
     # args
     category = models.CharField(max_length=50, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
