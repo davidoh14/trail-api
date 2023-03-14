@@ -8,14 +8,14 @@ class Page(models.Model):
     category = models.CharField(max_length=50, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     # session
-    received_at = models.DateTimeField()
-    sent_at = models.DateTimeField()
-    ip = models.GenericIPAddressField()
-    user_agent = models.CharField(max_length=200)
+    received_at = models.DateTimeField(blank=True, null=True)
+    sent_at = models.DateTimeField(blank=True, null=True)
+    ip = models.GenericIPAddressField(blank=True, null=True)
+    user_agent = models.CharField(max_length=200, blank=True, null=True)
     # properties
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True, null=True)
     path = models.CharField(max_length=200, blank=True, null=True)
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=200, blank=True, null=True)
     referrer = models.URLField(max_length=400, blank=True, null=True)
     search = models.CharField(max_length=200, blank=True, null=True)
 
