@@ -10,7 +10,6 @@ const getApiKeyFromScript = () => {
     return apiKey
 }
 
-
 const config = {
   baseURL: 'http://localhost:8000/pages/create/',
   headers: {
@@ -19,6 +18,23 @@ const config = {
   }
 };
 
+const createAnonymousId = () => {
+    if (!localStorage["trail_anon_id"]) {
+        const newAnonymousId = uuidv4()
+        
+        localStorage.setItem("trail_anon_id", newAnonymousId)
+        data["anonymous_id"] = newAnonymousId
+    }
+}
+
+const pageEvent = async () => {
+    createAnonymousId();
+    await fetch(config.baseURL, {
+        method: 'POST',
+        headers: config.headers,
+        body: JSON.stringify(data)
+    });
+};
 
 const data = {
     'anonymous_id': localStorage["trail_anon_id"],
@@ -28,27 +44,5 @@ const data = {
     'search': window.location.search,
     'sent_at': new Date(),
 }
-
-const createAnonymousId = () => {
-    if (!localStorage["trail_anon_id"]) {
-        const newAnonymousId = uuidv4()
-
-        localStorage.setItem("trail_anon_id", newAnonymousId)
-        data["anonymous_id"] = newAnonymousId
-    }
-}
-
-const pageEvent = async () => {
-    console.log("request");
-    createAnonymousId();
-    console.log('data', data);
-    console.log('auth', config.headers['X-Api-Key'])
-    await fetch(config.baseURL, {
-        method: 'POST',
-        headers: config.headers,
-        body: JSON.stringify(data)
-    });
-};
-
 
 window.addEventListener('load', pageEvent);
