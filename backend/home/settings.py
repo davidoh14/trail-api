@@ -30,11 +30,11 @@ ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOWED_ORIGINS = []
 
-# if DEBUG:
-#     CORS_ALLOWED_ORIGINS += [
-#         'http://localhost:1234',
-#         'https://localhost:1234',
-#     ]
+if DEBUG:
+    CORS_ALLOWED_ORIGINS += [
+        'http://localhost:1234',
+        'https://localhost:1234',
+    ]
 
 CORS_ALLOW_METHODS = [
     'GET',
