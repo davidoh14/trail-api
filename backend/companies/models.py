@@ -11,6 +11,6 @@ class Website(models.Model):
 
 
 class APIKey(models.Model):
-    key = models.UUIDField(default=uuid.uuid4, unique=True, null=False, blank=False)
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+    key = models.UUIDField(default=uuid.uuid4, unique=True, null=False, blank=False)
     active = models.BooleanField(default=True, null=False, blank=True)

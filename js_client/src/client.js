@@ -1,19 +1,21 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const script = document.getElementById('trail-api')
-const scriptSrc = script.getAttribute('src')
-const scriptSrcURL = new URL(scriptSrc)
-const scriptSearchParams = new URLSearchParams(scriptSrcURL.search)
-const apiKey = scriptSearchParams.get('apikey')
 
-const baseURL = 'http://localhost:8000/pages/create/'
+const getApiKeyFromScript = () => {
+    const scriptSrc = document.getElementById('trail-api').getAttribute('src')
+    const scriptSrcURL = new URL(scriptSrc)
+    const scriptSearchParams = new URLSearchParams(scriptSrcURL.search)
+    const apiKey = scriptSearchParams.get('apikey')
+
+    return apiKey
+}
 
 
 const config = {
-  baseURL: baseURL,
+  baseURL: 'http://localhost:8000/pages/create/',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': apiKey,
+    'X-Api-Key': getApiKeyFromScript(),
   }
 };
 

@@ -24,6 +24,6 @@ class APIKeySerializer(serializers.ModelSerializer):
         fields = [
             'key',
             'company',
+            'active',
         ]
-    
-    # override create method to validate company
+
