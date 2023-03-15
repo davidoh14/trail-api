@@ -69,10 +69,7 @@ INSTALLED_APPS = [
 
     # internal apps
     'companies',
-    'visitors',
     'pages',
-    'tracks',
-    'identify',
 ]
 
 MIDDLEWARE = [
