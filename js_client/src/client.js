@@ -22,13 +22,11 @@ const config = {
 
 const data = {
     'anonymous_id': localStorage["trail_anon_id"],
-    'sent_at': new Date(),
-    'user_agent': navigator.userAgent,
     'title': document.title,
     'path': window.location.pathname,
     'url': window.location.href,
-    'referrer': document.referrer,
     'search': window.location.search,
+    'sent_at': new Date(),
 }
 
 const createAnonymousId = () => {
@@ -44,7 +42,7 @@ const pageEvent = async () => {
     console.log("request");
     createAnonymousId();
     console.log('data', data);
-    console.log('auth', config.headers.Authorization)
+    console.log('auth', config.headers['X-Api-Key'])
     await fetch(config.baseURL, {
         method: 'POST',
         headers: config.headers,

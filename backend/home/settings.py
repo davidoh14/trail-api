@@ -28,14 +28,29 @@ DEBUG = str(os.environ.get('DEBUG')) == "1"
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOWED_ORIGINS = []
-# if DEBUG:
-#     CORS_ALLOWED_ORIGINS += [
-#         'http://localhost:8080/',
-#         'https://localhost:8080/',
-#     ]
+CORS_ALLOWED_ORIGINS = []
+if DEBUG:
+    CORS_ALLOWED_ORIGINS += [
+        'http://localhost:1234',
+        'https://localhost:1234',
+    ]
 
+CORS_ALLOW_METHODS = [
+    'GET',
+    'OPTIONS',
+    'POST',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'origin',
+    'user-agent',
+    'x-api-key',  # add your custom header here
+    'x-csrftoken',
+]
 
 # Application definition
 

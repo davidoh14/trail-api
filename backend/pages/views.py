@@ -16,13 +16,17 @@ def page_create_view(request, *args, **kwargs):
     if not is_api_key_authorized(api_key):
         return Response({'error': 'Invalid API Key'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    received_at = datetime.now()
     ip = request.META.get('REMOTE_ADDR')
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    referrer = request.META.get('HTTP_REFERER')
+    received_at = datetime.now()
 
     data = {
         **request.data, 
-        'received_at':received_at, 
+        'received_at': received_at, 
         'ip': ip,
+        'user_agent': user_agent,
+        'referrer': referrer,
     }
     print('~~~DATA~~~', data)
     serializer = PageSerializer(data=data)
